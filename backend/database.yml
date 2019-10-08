@@ -1,0 +1,7 @@
+---
+development:
+  dialect: sqlite
+  database: db.sqlite
+
+production:
+  url: {{envOr "DATABASE_URL" "sqlite://db.sqlite"}}
