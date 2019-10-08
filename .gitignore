@@ -1,0 +1,9 @@
+.idea/
+*.iml
+.vscode/
+node_modules/
+build/
+tmp/
+temp/
+.DS_Store
+dist/
