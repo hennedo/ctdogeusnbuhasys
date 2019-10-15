@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+
+.container-fluid {
+  padding: 25px 50px;
+}
+.card {
+  border-bottom-right-radius: 50%;
+  border: 0;
+
+  .card-img-bottom {
+    border-top-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+  }
+
+  .card-text {
+    text-align: center;
+    font-size: xx-large;
+  }
+  .card-body {
+    padding: 0.25rem 1.25rem;
+  }
+}

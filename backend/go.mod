@@ -10,6 +10,8 @@ require (
 	github.com/gobuffalo/packr/v2 v2.7.1 // indirect
 	github.com/gobuffalo/pop v4.12.1+incompatible // indirect
 	github.com/gobuffalo/tags v2.1.5+incompatible // indirect
+	github.com/gobuffalo/uuid v2.0.5+incompatible
+	github.com/gofrs/uuid v3.2.0+incompatible
 	github.com/gorilla/mux v1.7.3
 	github.com/jackc/pgconn v1.0.1 // indirect
 	github.com/magiconair/properties v1.8.1 // indirect
