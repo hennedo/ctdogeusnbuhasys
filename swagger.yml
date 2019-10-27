@@ -1,0 +1,547 @@
+openapi: 3.0.1
+info:
+  title: Mate Kassensystem
+  description: Ja...
+  version: 0.1.0
+servers:
+  - url: https://matekasse.ctdo.de
+tags:
+  - name: default
+  - name: products
+  - name: categories
+  - name: barcodes
+  - name: users
+paths:
+  /buy:
+    post:
+      tags:
+        - default
+      summary: Buy the Product for the authenticated user
+      security:
+        - BasicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                product:
+                  $ref: '#/components/schemas/Id'
+
+      responses:
+        200:
+          description: successful bought the product
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        400:
+          $ref: '#/components/responses/GeneralError'
+
+  /product:
+    get:
+      summary: Gets all available products
+      tags:
+        - products
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductEntity'
+    post:
+      summary: Creates new Product!
+      tags:
+        - products
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+
+      responses:
+        200:
+          description: success!
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        400:
+          $ref: '#/components/responses/GeneralError'
+
+  /product/{id}:
+    get:
+      tags:
+        - products
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: success!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductEntity'
+        404:
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - products
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        200:
+          description: success!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductEntity'
+        404:
+          $ref: '#/components/responses/NotFound'
+
+  /product/{id}/image:
+    get:
+      tags:
+        - products
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: success!
+          content:
+            image/*:
+              schema:
+                type: string
+                format: binary
+        404:
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - products
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          image/*:
+            schema:
+              type: string
+              format: binary
+      responses:
+        200:
+          description: success!
+        404:
+          $ref: '#/components/responses/NotFound'
+
+  /category:
+    get:
+      summary: Gets all available categories
+      tags:
+        - categories
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CategoryEntity'
+    post:
+      summary: Creates new Category!
+      tags:
+        - categories
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+
+      responses:
+        200:
+          description: success!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryEntity'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        400:
+          $ref: '#/components/responses/GeneralError'
+
+  /category/{id}:
+    get:
+      tags:
+        - categories
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: success!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryEntity'
+        404:
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - categories
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/Category'
+      responses:
+        200:
+          description: success!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryEntity'
+        404:
+          $ref: '#/components/responses/NotFound'
+  /barcode:
+    get:
+      tags:
+        - barcodes
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BarcodeEntity'
+    post:
+      tags:
+        - barcodes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Barcode'
+
+      responses:
+        200:
+          description: success!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BarcodeEntity'
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        400:
+          $ref: '#/components/responses/GeneralError'
+  /barcode/{id}:
+    get:
+      tags:
+        - barcodes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: success!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BarcodeEntity'
+        404:
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - barcodes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Barcode'
+      responses:
+        200:
+          description: success!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BarcodeEntity'
+        404:
+          $ref: '#/components/responses/NotFound'
+
+  /user:
+    get:
+      summary: Gets all Users
+      tags:
+        - users
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserEntity'
+    post:
+      summary: Creates new User!
+      tags:
+        - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+
+      responses:
+        200:
+          description: success!
+        401:
+          description: fukc u
+        400:
+          description: error!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseMessage'
+  /user/{id}:
+    get:
+      tags:
+        - users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: success!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserEntity'
+        404:
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        200:
+          description: success!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserEntity'
+        404:
+          $ref: '#/components/responses/NotFound'
+
+
+
+components:
+  securitySchemes:
+    BasicAuth:
+      description: Build from UserID:Pin
+      type: http
+      scheme: basic
+
+  responses:
+    NotFound:
+      description: The specified resource was not found
+
+    UnauthorizedError:
+      description: Authentication information is missing or invalid
+      headers:
+        WWW_Authenticate:
+          schema:
+            type: string
+
+    GeneralError:
+      description: An unknown error occured. See message
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ResponseMessage'
+
+  schemas:
+    Id:
+      type: string
+      format: uuid
+
+    Entity:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    ProductEntity:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Entity'
+        - $ref: '#/components/schemas/Product'
+      properties:
+        category:
+          $ref: '#/components/schemas/CategoryEntity'
+
+    CategoryEntity:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Entity'
+        - $ref: '#/components/schemas/Category'
+
+    BarcodeEntity:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Entity'
+        - $ref: '#/components/schemas/Barcode'
+      properties:
+        product:
+          $ref: '#/components/schemas/ProductEntity'
+
+    UserEntity:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Entity'
+        - $ref: '#/components/schemas/User'
+
+    Product:
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: integer
+        stock:
+          type: integer
+        customAttributes:
+          type: string
+          format: json
+        category:
+          $ref: '#/components/schemas/Id'
+
+    Barcode:
+      type: object
+      properties:
+        ean:
+          type: string
+          format: ean
+        product:
+          $ref: '#/components/schemas/Id'
+
+    Category:
+      type: object
+      properties:
+        name:
+          type: string
+
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+          description: "Verifizierte E-Mail ist Pflicht für 'Minuskonten'"
+        verified:
+          type: boolean
+        gravatar:
+          type: boolean
+          description: "Soll Gravatar genutzt werden?"
+        balance:
+          type: integer
+          description: "Signed int.. weil wegen konto im minus. besser es ist dokumentiert als man nimmt einfach so mate raus und dokumentiert es nirgends."
+        pin:
+          type: string
+          writeOnly: true
+          description: "Die Pin des Nutzers."
+
+    Log:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        user:
+          $ref: '#/components/schemas/Id'
+        product:
+          $ref: '#/components/schemas/Id'
+        action:
+          type: string
+          enum:
+            - increaseBalance
+            - decreaseBalance
+            - increaseStock
+            - decreaseStock
+            - buyProduct
+        amount:
+          type: integer
+
+    ResponseMessage:
+      type: object
+      properties:
+        message:
+          type: string
