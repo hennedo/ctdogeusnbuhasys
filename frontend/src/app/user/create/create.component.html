@@ -1,1 +1,41 @@
-<p>create works!</p>
+<h1>Register</h1>
+<hr />
+<form [formGroup]="formdata" class="form-horizontal" (ngSubmit)="onSubmit()">
+  <p>Create a new User</p>
+  <div class="form-group">
+    <input type="text" name="name" placeholder="Name" formControlName="name" [className]="(formdata.get('name').invalid && formdata.get('name').dirty) ? 'form-control is-invalid' : 'form-control'"/>
+  </div>
+  <div class="form-row">
+    <div class="col-sm form-group">
+      <input type="email" name="email" id="email" placeholder="E-Mail" formControlName="email" [className]="(formdata.get('email').invalid && formdata.get('email').dirty) ? 'form-control is-invalid' : 'form-control'"/>
+      <small class="form-text">optional: Email address for log, mandatory if you want to get credit, must be verified for credit</small>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <label class="form-check-label" for="gravatar">
+        <input type="checkbox" formControlName="gravatar" name="gravatar" class="form-check-input" id="gravatar">
+        use gravatar
+      </label>
+      <small class="form-text">optional: if you want to use a gravatar avatar, check this box</small>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-sm form-group">
+      <input type="password" name="pin" placeholder="PIN" formControlName="pin" [className]="(formdata.get('pin').invalid && formdata.get('pin').dirty) ? 'form-control is-invalid' : 'form-control'"/>
+      <small class="form-text">optional: Pin to protect your account</small>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-sm form-group">
+      <input type="number" name="balance" placeholder="0.00" step="0.5" formControlName="balance" [className]="(formdata.get('balance').invalid && formdata.get('balance').dirty) ? 'form-control is-invalid' : 'form-control'"/>
+      <small class="form-text">optional: your initial balance</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-sm form-group">
+      <input type="submit" class="btn btn-success" value="create">
+    </div>
+  </div>
+</form>

@@ -10,7 +10,14 @@
       <ul class="navbar-nav mr-auto"></ul>
       <ul class="navbar-nav">
         <li class="nav-item" routerLinkActive="active"><a [routerLink]="['users', 'create']" class="nav-link">New Mate</a></li>
-        <li class="nav-item"><a [routerLink]="" class="nav-link">Logout</a></li>
+        <li class="nav-item d-none d-sm-block" ngbDropdown>
+        <a [routerLink]="" class="nav-link" ngbDropdownToggle><img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=444" class="nav-image"> Henne <span class="caret"></span></a>
+        <div ngbDropdownMenu>
+          <a ngbDropdownItem routerLink="/users/1/update" (click)="isNavbarCollapsed=!isNavbarCollapsed">Edit user</a>
+          <a ngbDropdownItem [routerLink]="" (click)="isNavbarCollapsed=!isNavbarCollapsed">Logout</a>
+
+        </div>
+      </li>
       </ul>
     </div>
   </nav>

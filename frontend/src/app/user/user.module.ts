@@ -8,13 +8,15 @@ import { UpdateComponent } from './update/update.component';
 import { BuyComponent } from './buy/buy.component';
 import { LogComponent } from './log/log.component';
 import { AddfundsComponent } from './addfunds/addfunds.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
   declarations: [IndexComponent, CreateComponent, UpdateComponent, BuyComponent, LogComponent, AddfundsComponent],
   imports: [
     CommonModule,
-    UserRoutingModule
+    UserRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class UserModule { }

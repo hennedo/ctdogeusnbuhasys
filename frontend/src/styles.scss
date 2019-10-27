@@ -6,7 +6,7 @@
 .card {
   border-bottom-right-radius: 50%;
   border: 0;
-  margin-top: 50px;
+  margin-bottom: 50px;
 
   .card-img-bottom {
     border-top-left-radius: 50%;
@@ -20,4 +20,11 @@
   .card-body {
     padding: 0.25rem 1.25rem;
   }
+}
+
+.nav-image {
+  max-width: 30px;
+  max-height: 30px;
+  border-top-left-radius: 50%;
+  border-bottom-right-radius: 50%;
 }

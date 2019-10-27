@@ -1,1 +1,20 @@
-<p>buy works!</p>
+<div class="row">
+  <div class="col">
+    <h1>Hello Henne!</h1>
+    Balance: 10.00€
+  </div>
+</div>
+<div class="row">
+  <ng-container *ngFor="let i of [0,1,2,3,4,5,6]; let x = index;">
+    <div class="col-2">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text text-center">Club Mate</p>
+          <p class="card-text text-center">1.50€</p>
+        </div>
+        <img src="https://images-na.ssl-images-amazon.com/images/I/71HZEDaRk8L._SL1500_.jpg" class="card-img-bottom" width="222px">
+      </div>
+    </div>
+    <div class="w-100" *ngIf="(x+1)%6==0"></div>
+  </ng-container>
+</div>
