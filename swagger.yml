@@ -512,6 +512,9 @@ components:
         gravatar:
           type: boolean
           description: "Soll Gravatar genutzt werden?"
+        imageUrl:
+          type: string
+          description: "Alternativ URL zum Avatar"
         balance:
           type: integer
           description: "Signed int.. weil wegen konto im minus. besser es ist dokumentiert als man nimmt einfach so mate raus und dokumentiert es nirgends."
