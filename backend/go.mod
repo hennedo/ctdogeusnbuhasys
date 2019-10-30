@@ -4,7 +4,6 @@ go 1.13
 
 require (
 	github.com/fsnotify/fsnotify v1.4.7
-	github.com/gobuffalo/uuid v2.0.5+incompatible
 	github.com/gofrs/uuid v3.2.0+incompatible
 	github.com/google/go-cmp v0.3.1 // indirect
 	github.com/gorilla/mux v1.7.3
