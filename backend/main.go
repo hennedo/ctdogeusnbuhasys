@@ -4,6 +4,7 @@ import (
 	"sync"
 
 	"github.com/fsnotify/fsnotify"
+	"github.com/henne-/ctdogeusnbuhasys/backend/db"
 	_ "github.com/henne-/ctdogeusnbuhasys/backend/models"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
@@ -12,12 +13,15 @@ import (
 var waitGroup sync.WaitGroup
 
 func main() {
+	db.Load()
+
 	initConfig()
 	initServer()
 
 	loadConfig()
 	startServer(&waitGroup)
 	waitGroup.Wait()
+	db.Close()
 }
 
 func initConfig() {

@@ -1,11 +1,12 @@
 package main
 
 import (
+	"net/http"
+	"sync"
+
 	"github.com/gorilla/mux"
 	"github.com/henne-/ctdogeusnbuhasys/backend/routes"
 	"github.com/sirupsen/logrus"
-	"net/http"
-	"sync"
 )
 
 var (
