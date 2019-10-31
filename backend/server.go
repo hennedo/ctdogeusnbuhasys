@@ -48,9 +48,9 @@ func initServer() {
 	router.NewRoute().Path("/user/{id}").Methods("GET").HandlerFunc(routes.CreateUser)
 	router.NewRoute().Path("/user/{id}").Methods("PUT").HandlerFunc(routes.UpdateUser)
 
-	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With"})
 	originsOk := handlers.AllowedOrigins([]string{"*"})
-	methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS"})
+	methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT"})
+	headersOk := handlers.AllowedHeaders([]string{"content-type"})
 	router.Use(func(handler http.Handler) http.Handler {
 		return handlers.CORS(headersOk, originsOk, methodsOk)(handler)
 	})

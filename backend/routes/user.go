@@ -44,7 +44,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	user.ID = nil
 	user.CreatedAt = nil
 	user.UpdatedAt = nil
-	
+
 	db.DB.Save(&user)
 }
 
