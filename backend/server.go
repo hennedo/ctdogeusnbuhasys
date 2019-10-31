@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"sync"
 
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/henne-/ctdogeusnbuhasys/backend/routes"
 	"github.com/sirupsen/logrus"
@@ -41,9 +42,18 @@ func initServer() {
 
 	router.NewRoute().Path("/user").Methods("GET").HandlerFunc(routes.ListUsers)
 	router.NewRoute().Path("/user").Methods("POST").HandlerFunc(routes.GetUser)
+	router.NewRoute().Path("/user").Methods("OPTIONS").HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
+		writer.WriteHeader(200)
+	})
 	router.NewRoute().Path("/user/{id}").Methods("GET").HandlerFunc(routes.CreateUser)
 	router.NewRoute().Path("/user/{id}").Methods("PUT").HandlerFunc(routes.UpdateUser)
 
+	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With"})
+	originsOk := handlers.AllowedOrigins([]string{"*"})
+	methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS"})
+	router.Use(func(handler http.Handler) http.Handler {
+		return handlers.CORS(headersOk, originsOk, methodsOk)(handler)
+	})
 	http.Handle("/", router)
 }
 

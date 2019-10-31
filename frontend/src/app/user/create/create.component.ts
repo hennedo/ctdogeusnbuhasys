@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
+import {CurrentUserService, UserService} from '../../_services';
 
 @Component({
   selector: 'app-create',
@@ -8,7 +9,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 })
 export class CreateComponent implements OnInit {
   formdata: FormGroup;
-  constructor() { }
+  constructor(private userService: UserService, private currentUserService: CurrentUserService) { }
 
   ngOnInit() {
     this.formdata = new FormGroup({
@@ -21,6 +22,10 @@ export class CreateComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.formdata.value);
+    this.userService.create(this.formdata.value).subscribe(u => {
+      this.currentUserService.set(u);
+    }, err => {
+      console.log(err);
+    });
   }
 }

@@ -4,7 +4,7 @@ export interface UserModel {
   email?: string;
   verified: boolean;
   gravatar: boolean;
-  imageUrl: boolean;
+  imageUrl: string;
   balance: number;
   pin?: string;
   createdAt?: string;
