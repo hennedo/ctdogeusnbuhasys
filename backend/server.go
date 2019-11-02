@@ -35,17 +35,17 @@ func initServer() {
 	router.NewRoute().Path("/category/{id}").Methods("PUT").HandlerFunc(routes.UpdateCategory)
 
 	router.NewRoute().Path("/barcode").Methods("GET").HandlerFunc(routes.ListBarcodes)
-	router.NewRoute().Path("/barcode").Methods("POST").HandlerFunc(routes.GetBarcode)
-	router.NewRoute().Path("/barcode/{id}").Methods("GET").HandlerFunc(routes.CreateBarcode)
+	router.NewRoute().Path("/barcode").Methods("POST").HandlerFunc(routes.CreateBarcode)
+	router.NewRoute().Path("/barcode/{id}").Methods("GET").HandlerFunc(routes.GetBarcode)
 	router.NewRoute().Path("/barcode/{id}").Methods("PUT").HandlerFunc(routes.UpdateBarcode)
 	router.NewRoute().Path("/barcode/ean/{ean}").Methods("GET").HandlerFunc(routes.GetEanBarcode)
 
 	router.NewRoute().Path("/user").Methods("GET").HandlerFunc(routes.ListUsers)
-	router.NewRoute().Path("/user").Methods("POST").HandlerFunc(routes.GetUser)
+	router.NewRoute().Path("/user").Methods("POST").HandlerFunc(routes.CreateUser)
 	router.NewRoute().Path("/user").Methods("OPTIONS").HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
 		writer.WriteHeader(200)
 	})
-	router.NewRoute().Path("/user/{id}").Methods("GET").HandlerFunc(routes.CreateUser)
+	router.NewRoute().Path("/user/{id}").Methods("GET").HandlerFunc(routes.GetUser)
 	router.NewRoute().Path("/user/{id}").Methods("PUT").HandlerFunc(routes.UpdateUser)
 
 	originsOk := handlers.AllowedOrigins([]string{"*"})
