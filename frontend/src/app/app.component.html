@@ -9,6 +9,7 @@
 
       <ul class="navbar-nav mr-auto"></ul>
       <ul class="navbar-nav">
+        <li class="nav-item"><a [routerLink]="['products', 'create']" class="nav-link">New Product</a> </li>
         <li class="nav-item" routerLinkActive="active"><a [routerLink]="['users', 'create']" class="nav-link" [hidden]="currentUserService.hasUser()">New Mate</a></li>
         <li class="nav-item" ngbDropdown [hidden]="!currentUserService.hasUser()">
           <a [routerLink]="" class="nav-link" ngbDropdownToggle><img src="https://www.gravatar.com/avatar/50e23dbfb83b36409cdf9ef94a0506f3?s=444" class="nav-image"> Henne <span class="caret"></span></a>

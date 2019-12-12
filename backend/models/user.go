@@ -4,7 +4,7 @@ package models
 // Die Pin des Nutzers.
 type User struct {
 	Model
-	Name      string    `json:"name,omitempty"`
+	Name      string    `json:"name,omitempty" gorm:"unique"`
 	ImageUrl  string    `json:"imageUrl,omitempty"`
 	Email     string    `json:"email,omitempty"`
 	Verified  bool      `json:"verified,omitempty"`

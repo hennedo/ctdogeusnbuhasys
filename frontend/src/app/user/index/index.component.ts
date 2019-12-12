@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {CurrentUserService} from '../../_services';
+import {CurrentUserService} from '@/_services';
 import {UserModel} from '@/_models';
-import {UserModule} from '@/user/user.module';
 import {ActivatedRoute} from '@angular/router';
-import {pipe} from 'rxjs';
-import {first, mergeMap, take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-index',
