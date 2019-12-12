@@ -6,12 +6,16 @@ import {CreateComponent} from './create/create.component';
 import {AddfundsComponent} from './addfunds/addfunds.component';
 import {LogComponent} from './log/log.component';
 import {UpdateComponent} from './update/update.component';
+import {UsersResolverService} from '@/_resolver';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: IndexComponent
+    component: IndexComponent,
+    resolve: {
+      users: UsersResolverService
+    }
   },
   {
     path: ':id/buy',

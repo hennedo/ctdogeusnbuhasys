@@ -31,4 +31,7 @@ export class CurrentUserService {
       headers: {Authorization: 'Basic ' + btoa(this.currentUser.name + ':' + this.currentUser.pin)}
     };
   }
+  hasUser() {
+    return (this.currentUser && !!this.currentUser.name);
+  }
 }

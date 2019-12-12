@@ -1,12 +1,12 @@
 <h1>User selection</h1>
 <div class="row">
-  <ng-container *ngFor="let i of [0,1,2,3,4,5,6]; let x = index;">
+  <ng-container *ngFor="let user of users; let x = index;">
     <div class="col-2">
-      <div class="card" [routerLink]="[i, 'buy']">
+      <div class="card" [routerLink]="[user.id, 'buy']">
         <div class="card-body">
-          <p class="card-text text-center">Henne</p>
+          <p class="card-text text-center">{{user.name}}</p>
         </div>
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=444" class="card-img-bottom">
+        <img src="https://www.gravatar.com/avatar/50e23dbfb83b36409cdf9ef94a0506f3?s=444" class="card-img-bottom">
       </div>
     </div>
     <div class="w-100" *ngIf="(x+1)%6==0"></div>
